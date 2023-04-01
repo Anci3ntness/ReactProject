@@ -14,7 +14,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.static(path.resolve(__dirname, "static")))
-app.use(fileUpload({}))
+app.use(fileUpload({ limits: { fileSize: 50 * 1024 * 1024 } }))
 app.use("/api", router)
 
 //Обработчик ошибок. Конечный middleware

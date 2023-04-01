@@ -4,6 +4,7 @@
   "description": "Server For Fisrt React project",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "dev": "nodemon index.js",
     "start": "node index.js"
   },
@@ -21,6 +22,7 @@
     "sequelize": "^6.30.0"
   },
   "devDependencies": {
+    "jest": "^29.5.0",
     "nodemon": "^2.0.22"
   }
 }

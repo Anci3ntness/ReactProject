@@ -1,7 +1,7 @@
 {
   "name": "reactproject",
   "version": "1.0.0",
-  "description": "Fisrt React project",
+  "description": "Server For Fisrt React project",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",

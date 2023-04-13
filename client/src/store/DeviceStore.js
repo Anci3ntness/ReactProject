@@ -14,7 +14,11 @@ export default class DeviceStore {
 		]
 		this._devices = [
 			{ id: 1, name: 'Iphone 12 Pro', price: 250000, rating: 5, img: 'https://picsum.photos/200/300' },
-			{ id: 1, name: 'Holodos 15 eLTRA', price: 2520000, rating: 10, img: 'https://picsum.photos/200/400' },
+			{ id: 2, name: 'Holodos 15 eLTRA', price: 2520000, rating: 10, img: 'https://picsum.photos/200/400' },
+			{ id: 1, name: 'Iphone 12 Pro', price: 250000, rating: 5, img: 'https://picsum.photos/200/300' },
+			{ id: 2, name: 'Holodos 15 eLTRA', price: 2520000, rating: 10, img: 'https://picsum.photos/200/400' },
+			{ id: 1, name: 'Iphone 12 Pro', price: 250000, rating: 5, img: 'https://picsum.photos/200/300' },
+			{ id: 2, name: 'Holodos 15 eLTRA', price: 2520000, rating: 10, img: 'https://picsum.photos/200/400' },
 		]
 		this._selectedType = {}
 		this._selectedBrand = {}

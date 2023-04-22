@@ -1,18 +1,29 @@
-import React from 'react'
-import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react'
+import { Button, Card, Col, Container, Image, Row, Spinner } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
+import { fetchOneDevices } from '../http/deviceAPI'
 
 export default function DevicePage() {
-	const device = { id: 1, name: 'Iphone 12 Pro', price: 250000, rating: 5, img: 'https://picsum.photos/200/300' }
-	const description = [
-		{ id: 1, title: 'Camera', desc: '12 mp' },
-		{ id: 2, title: 'Lamera', desc: '15 pm' },
-	]
+	const [device, setDevice] = useState({ info: [] })
+	const [loading, setLoading] = useState(true)
+	const { id } = useParams()
+
+	useEffect(() => {
+		fetchOneDevices(id)
+			.then(data => setDevice(data))
+			.finally(() => setLoading(false))
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+
+	if (loading) {
+		return <Spinner animation='grow' />
+	}
 
 	return (
 		<Container className='mt-3'>
-			<Row className='align-items-center'>
-				<Col md={4} className='d-flex flex-column align-items-center'>
-					<Image width={300} height={300} src={device.img} />
+			<Row className='media align-items-center'>
+				<Col md={4} className='d-flex flex-column align-items-center '>
+					<Image width={300} height={300} src={process.env.REACT_APP_API_URL + device?.img} />
 				</Col>
 				<Col md={4} className='d-flex flex-column align-items-center'>
 					<h2>{device.name}</h2>
@@ -29,7 +40,6 @@ export default function DevicePage() {
 								background: 'rgba(255, 255, 0, 0.8)',
 								clipPath:
 									'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
-								transform: 'rotate(360deg)',
 								animation: '4s linear 0s infinite rotation',
 							}}
 						></div>
@@ -57,13 +67,13 @@ export default function DevicePage() {
 			</Row>
 			<Row className='d-flex flex-column m-3'>
 				<h2>Характеристики</h2>
-				{description.map((info, index) => (
+				{device.info.map((info, index) => (
 					<Row
 						className='p-2'
 						key={info.id}
 						style={{ background: index % 2 === 0 ? 'rgb(98, 218, 251)' : 'lightblue' }}
 					>
-						{info.title}: {info.desc}
+						{info?.title}: {info?.description}
 					</Row>
 				))}
 			</Row>

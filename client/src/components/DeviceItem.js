@@ -12,11 +12,11 @@ export default function DeviceItem({ device }) {
 						className='bg-white bg-blur'
 						width={150}
 						height={150}
-						src={device?.img}
+						src={process.env.REACT_APP_API_URL + device?.img}
 						style={{
 							objectFit: 'contain',
 							objectPosition: '50% 50%',
-							backgroundImage: `url(${device.img})`,
+							backgroundImage: `url(${process.env.REACT_APP_API_URL + device?.img})`,
 							backgroundPosition: '50% 50%',
 							borderRadius: '0.3em',
 						}}

@@ -1,27 +1,14 @@
 import { makeAutoObservable } from 'mobx'
 export default class DeviceStore {
 	constructor() {
-		this._types = [
-			{ id: 1, name: 'Холодильники' },
-			{ id: 2, name: 'Телефоны' },
-			{ id: 3, name: 'Планшеты' },
-			{ id: 4, name: 'Накопители' },
-		]
-		this._brands = [
-			{ id: 1, name: 'Sumsung' },
-			{ id: 2, name: 'Apple' },
-			{ id: 3, name: 'Lenovo' },
-		]
-		this._devices = [
-			{ id: 1, name: 'Iphone 12 Pro', price: 250000, rating: 5, img: 'https://picsum.photos/200/300' },
-			{ id: 2, name: 'Holodos 15 eLTRA', price: 2520000, rating: 10, img: 'https://picsum.photos/200/400' },
-			{ id: 1, name: 'Iphone 12 Pro', price: 250000, rating: 5, img: 'https://picsum.photos/200/300' },
-			{ id: 2, name: 'Holodos 15 eLTRA', price: 2520000, rating: 10, img: 'https://picsum.photos/200/400' },
-			{ id: 1, name: 'Iphone 12 Pro', price: 250000, rating: 5, img: 'https://picsum.photos/200/300' },
-			{ id: 2, name: 'Holodos 15 eLTRA', price: 2520000, rating: 10, img: 'https://picsum.photos/200/400' },
-		]
+		this._types = []
+		this._brands = []
+		this._devices = []
 		this._selectedType = {}
 		this._selectedBrand = {}
+		this._page = 1
+		this._totalCount = 0
+		this._limit = 2
 		makeAutoObservable(this)
 	}
 	setTypes(types) {
@@ -34,12 +21,23 @@ export default class DeviceStore {
 		this._devices = devices
 	}
 	setSelectedType(type) {
+		this.setPage(1)
 		if (type?.id === this._selectedType?.id) this._selectedType = {}
 		else this._selectedType = type
 	}
 	setSelectedBrand(brand) {
+		this.setPage(1)
 		if (brand?.id === this._selectedBrand?.id) this._selectedBrand = {}
 		else this._selectedBrand = brand
+	}
+	setLimit(limit) {
+		this._limit = limit
+	}
+	setTotalCount(totalCount) {
+		this._totalCount = totalCount
+	}
+	setPage(page) {
+		this._page = page
 	}
 	get types() {
 		return this._types
@@ -55,5 +53,14 @@ export default class DeviceStore {
 	}
 	get selectedBrand() {
 		return this._selectedBrand
+	}
+	get page() {
+		return this._page
+	}
+	get limit() {
+		return this._limit
+	}
+	get totalCount() {
+		return this._totalCount
 	}
 }
